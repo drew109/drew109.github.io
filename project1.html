@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stealth PowerShell Payload Loader</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="projects.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <style>
+    .project-detail {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .project-detail h1 {
+      font-size: 1.8rem;
+      color: #00ff77;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #00ff77;
+      padding-bottom: 0.3rem;
+      text-shadow: 0 0 8px rgba(0, 255, 119, 0.4);
+    }
+
+    .project-detail img {
+      display: block;
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      border: 2px solid #00ff77;
+      border-radius: 4px;
+      margin: 1.5rem auto;
+      box-shadow: 0 0 20px rgba(0, 255, 119, 0.15);
+    }
+
+    .project-detail p {
+      color: #00ff77;
+      line-height: 1.6;
+      font-size: 1rem;
+      margin-top: 1rem;
+      text-align: justify;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #00ffff;
+      text-decoration: none;
+      font-family: 'Fira Code', monospace;
+      transition: all 0.3s;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+      text-shadow: 0 0 5px #00ffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal-container project-detail">
+    <h1>Stealth PowerShell Payload Loader</h1>
+
+    <img src="https://payload.dr3w.dev/Payload-Example.png" alt="Payload Project Screenshot" />
+
+    <p>
+      This script is designed as a stealthy and automated payload execution framework using PowerShell. Delivered via HID (e.g., Rubber Ducky or Flipper Zero), it opens a PowerShell session, establishes a secure TLS connection, and downloads a Base64-encoded binary from a remote source.
+    </p>
+    <p>
+      Once retrieved, the encoded payload is decoded into an executable file with a randomized name and stored in the temporary directory. The script then silently executes the payload using <code>Start-Process</code> with a hidden window and waits for execution to complete.
+    </p>
+    <p>
+      It performs cleanup by removing both the payload and any generated artifacts from disk, avoiding detection by not writing PowerShell scripts to disk. This modular approach allows the operator to run any executable payload remotely, making it flexible for red team engagements or sandbox bypass.
+    </p>
+
+    <a href="projects.html" class="back-link">← Back to Projects Catalog</a>
+  </div>
+  
+</body>
+</html>
