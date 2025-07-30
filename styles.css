@@ -1,0 +1,227 @@
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: #00ff77;
+  font-family: 'Fira Code', monospace;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  flex-direction: column;
+  text-align: left;
+}
+
+/* Optional background canvas */
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* TERMINAL CONTAINER */
+.terminal-container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 40px auto;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 1.5rem;
+  box-shadow: 0 0 30px rgba(0, 255, 100, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.terminal {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  width: 100%;
+  min-height: 400px;
+}
+
+/* TERMINAL OUTPUT LINES */
+.line {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem;
+  margin-bottom: 0.6rem;
+  align-items: center;
+}
+
+.prompt {
+  color: #00ff77;
+  white-space: nowrap;
+  position: relative;
+  top: 1px;
+}
+
+.dynamic-cursor {
+  display: inline-block;
+  width: 8px;
+  border-right: 2px solid #00ff77;
+  animation: blink 1s step-end infinite;
+  position: relative;
+  top: -1px;
+}
+
+/* INPUT TEXT AREA + MIRROR */
+.input-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 0.6rem;
+  width: 100%;
+}
+
+.input-wrapper {
+  width: 100%;
+  max-width: 60ch;
+  position: relative;
+}
+
+.terminal-textarea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: transparent;
+  background: transparent;
+  border: none;
+  resize: none;
+  overflow: hidden;
+  caret-color: transparent;
+  font-family: 'Fira Code', monospace;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  padding: 0;
+  margin: 0;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.terminal-mirror {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background: transparent;
+  color: #00ff77;
+  font-family: 'Fira Code', monospace;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  min-height: 1.4rem;
+  pointer-events: none;
+}
+
+/* BLOCK CURSOR */
+.fake-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background: #00ff77;
+  margin-left: 2px;
+  animation: blink 1s steps(1) infinite;
+  vertical-align: bottom;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* NAV BAR */
+.nav-bar {
+  position: sticky;
+  bottom: 0;
+  background: rgba(0,0,0,0.9);
+  padding: 10px;
+  border-top: 1px solid #1a1a1a;
+  margin-top: 1rem;
+}
+
+.nav-link {
+  color: #00ff77;
+  margin: 0 5px;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 8px rgba(0, 255, 119, 0.4);
+}
+
+/* LINKS */
+a {
+  color: #00ffff;
+  text-decoration: none;
+  transition: all 0.2s;
+  position: relative;
+}
+
+a.visible-link {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+a.hidden-link {
+  color: inherit !important;
+  pointer-events: none;
+  text-decoration: inherit !important;
+  opacity: 1 !important;
+}
+
+a:not(.hidden-link):hover {
+  text-decoration: underline;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+}
+.terminal-footer {
+  margin-top: 2rem;
+  color: #00ff77;
+  text-align: left;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #00ff77;
+}
+
+.terminal-footer a {
+  color: #00ff77;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.terminal-footer a:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 8px rgba(0, 255, 119, 0.4);
+}
+
+
+/* Notification popup */
+.code-credit {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 255, 0, 0.15);
+  border: 1px solid #0f0;
+  padding: 8px 14px;
+  font-family: 'Fira Code', monospace;
+  color: #0f0;
+  font-size: 14px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+  z-index: 1000;
+}
+.code-credit.show {
+  opacity: 1;
+  pointer-events: auto;
+}
