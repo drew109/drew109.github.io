@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Project Two</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AWS labs, workshops, and technical learning work by Andrew Webster." />
+  <title>AWS Builder Labs and Workshops | Andrew Webster</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="projects.css" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
@@ -22,23 +24,18 @@
       text-shadow: 0 0 8px rgba(0, 255, 119, 0.4);
     }
 
-    .project-detail img {
-      display: block;
-      width: 100%;
-      max-width: 600px;
-      height: auto;
-      border: 2px solid #00ff77;
-      border-radius: 4px;
-      margin: 1.5rem auto;
-      box-shadow: 0 0 20px rgba(0, 255, 119, 0.15);
-    }
-
-    .project-detail p {
-      color: #00ff77;
-      line-height: 1.6;
+    .project-detail p,
+    .project-detail li {
+      color: #b9ffd8;
+      line-height: 1.7;
       font-size: 1rem;
       margin-top: 1rem;
-      text-align: justify;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .project-detail ul {
+      padding-left: 1.2rem;
+      margin-top: 1rem;
     }
 
     .back-link {
@@ -55,37 +52,31 @@
       text-decoration: underline;
       text-shadow: 0 0 5px #00ffff;
     }
-
-    .download-btn {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 10px 20px;
-      background-color: #00ff77;
-      color: #000;
-      text-decoration: none;
-      font-weight: bold;
-      font-family: 'Fira Code', monospace;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-    }
-
-    .download-btn:hover {
-      background-color: #00cc66;
-      box-shadow: 0 0 10px rgba(0, 255, 119, 0.4);
-    }
   </style>
 </head>
 <body>
   <div class="terminal-container project-detail">
-    <h1>Coming Soon</h1>
-
-    <img src="https://raw.githubusercontent.com/drew109/drew109.github.io/main/assets/projects/CONS.png" alt="Project 2 Screenshot" />
+    <h1>AWS Builder Labs and Workshops</h1>
 
     <p>
+      This page summarizes the kind of AWS learning and technical communication work I have been doing through student-focused cloud content, guided labs, and hands-on walkthroughs.
     </p>
-    <br />
-    <a href="projects.html" class="back-link">← Back to Projects Catalog</a>
-    
+    <p>
+      The work centers on making cloud concepts practical: explaining what a service does, why it matters, how it is used in a simple architecture, and what security-minded decisions show up even in early-stage learning projects.
+    </p>
+
+    <ul>
+      <li>Hands-on exposure to EC2, S3, Lambda, IAM, and VPC concepts</li>
+      <li>Student-facing technical walkthroughs that translate AWS tooling into understandable steps</li>
+      <li>Workshop-style explanations around least privilege, cloud architecture basics, and secure deployment thinking</li>
+      <li>A blend of technical learning, mentoring, and communication that fits cloud-support and cloud-security paths well</li>
+    </ul>
+
+    <p>
+      I keep the public version of this work focused on the learning outcomes and communication side. The value of the project is not only the tooling itself, but the ability to understand it well enough to explain it clearly and use it responsibly.
+    </p>
+
+    <a href="projects.html" class="back-link">Back to Projects</a>
   </div>
 </body>
 </html>
