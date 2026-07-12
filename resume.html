@@ -6,16 +6,17 @@
   <meta name="description" content="Current resume for Andrew Webster." />
   <title>Resume | Andrew Webster</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="resume.css" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <style>
     html, body {
-      height: 100%;
+      min-height: 100%;
       margin: 0;
       background-color: #0a0a0a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    }
+
+    body {
+      display: block;
+      padding: 2rem 0;
     }
 
     .resume-wrapper {
@@ -24,7 +25,8 @@
       align-items: center;
       width: 100%;
       max-width: 980px;
-      padding: 2rem 1rem;
+      margin: 0 auto;
+      padding: 0 1rem;
       box-sizing: border-box;
     }
 
@@ -46,19 +48,46 @@
 
     .resume-container {
       width: 100%;
-      aspect-ratio: 8.5 / 11;
       border: 2px solid #00ff77;
       border-radius: 6px;
-      overflow: hidden;
-      background: black;
+      background: rgba(0, 0, 0, 0.82);
       box-shadow: 0 0 20px rgba(0, 255, 119, 0.2);
+      padding: 1rem;
     }
 
-    .resume-pdf {
+    .resume-pages {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .resume-page {
       width: 100%;
-      height: 100%;
-      border: none;
+      display: flex;
+      justify-content: center;
+    }
+
+    .resume-page canvas {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
       display: block;
+      background: white;
+      border-radius: 4px;
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.08);
+    }
+
+    .resume-status {
+      color: #b9ffd8;
+      font-family: 'Fira Code', monospace;
+      line-height: 1.7;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    .resume-status.error {
+      color: #ffb8b8;
     }
 
     .resume-buttons {
@@ -96,6 +125,20 @@
     .resume-buttons a.secondary:hover {
       background: rgba(0, 255, 119, 0.12);
     }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 1rem 0;
+      }
+
+      .resume-wrapper {
+        padding: 0 0.75rem;
+      }
+
+      .resume-container {
+        padding: 0.75rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -105,11 +148,13 @@
     </div>
 
     <div class="resume-container">
-      <iframe class="resume-pdf" src="assets/resumes/resume_ats.pdf#toolbar=0&navpanes=0&scrollbar=0"></iframe>
+      <div id="resume-status" class="resume-status">Loading resume...</div>
+      <div id="resume-pages" class="resume-pages"></div>
     </div>
 
     <div class="resume-buttons">
       <a href="assets/resumes/resume_ats.pdf" download>Download current resume</a>
+      <a class="secondary" href="assets/resumes/resume_ats.pdf" target="_blank" rel="noopener noreferrer">Open PDF directly</a>
       <a class="secondary" href="index.html?noIntro=true">Back to home</a>
     </div>
 
@@ -121,5 +166,76 @@
       [ <a href="contact.html">contact</a> ]
     </div>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    const pdfUrl = "assets/resumes/resume_ats.pdf";
+    const statusEl = document.getElementById("resume-status");
+    const pagesEl = document.getElementById("resume-pages");
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+    let resizeTimer = null;
+    let activeRenderToken = 0;
+
+    async function renderResume() {
+      const renderToken = ++activeRenderToken;
+      statusEl.textContent = "Loading resume...";
+      statusEl.classList.remove("error");
+      pagesEl.innerHTML = "";
+
+      try {
+        const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+        const availableWidth = Math.max(320, pagesEl.clientWidth || pagesEl.parentElement.clientWidth || 320);
+
+        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+          if (renderToken !== activeRenderToken) {
+            return;
+          }
+
+          const page = await pdf.getPage(pageNumber);
+          const baseViewport = page.getViewport({ scale: 1 });
+          const scale = Math.min(2, (availableWidth - 8) / baseViewport.width);
+          const viewport = page.getViewport({ scale });
+
+          const pageWrap = document.createElement("div");
+          pageWrap.className = "resume-page";
+
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d");
+          const pixelRatio = window.devicePixelRatio || 1;
+
+          canvas.width = Math.floor(viewport.width * pixelRatio);
+          canvas.height = Math.floor(viewport.height * pixelRatio);
+          canvas.style.width = `${viewport.width}px`;
+          canvas.style.height = `${viewport.height}px`;
+
+          context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+          pageWrap.appendChild(canvas);
+          pagesEl.appendChild(pageWrap);
+
+          await page.render({
+            canvasContext: context,
+            viewport
+          }).promise;
+        }
+
+        statusEl.textContent = "";
+      } catch (error) {
+        statusEl.textContent = "The inline preview could not be loaded. Use the buttons below to open or download the PDF directly.";
+        statusEl.classList.add("error");
+        console.error(error);
+      }
+    }
+
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(renderResume, 180);
+    });
+
+    renderResume();
+  </script>
 </body>
 </html>
