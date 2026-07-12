@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Stealth PowerShell Payload Loader</title>
+  <title>PowerShell Execution Detection Lab</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="projects.css" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
@@ -59,18 +59,18 @@
 </head>
 <body>
   <div class="terminal-container project-detail">
-    <h1>Stealth PowerShell Payload Loader</h1>
+    <h1>PowerShell Execution Detection Lab</h1>
 
-    <img src="https://raw.githubusercontent.com/drew109/drew109.github.io/refs/heads/main/assets/projects/Payload-Example.png" alt="Payload Project Screenshot" />
+    <img src="https://raw.githubusercontent.com/drew109/drew109.github.io/refs/heads/main/assets/projects/Payload-Example.png" alt="PowerShell lab project screenshot" />
 
     <p>
-      This script is designed as a stealthy and automated payload execution framework using PowerShell. Delivered via HID (e.g., Rubber Ducky or Flipper Zero), it opens a PowerShell session, establishes a secure TLS connection, and downloads a Base64-encoded binary from a remote source.
+      This project was built in a controlled Windows lab to study how PowerShell-driven execution chains behave on an endpoint and what kinds of activity defenders can monitor during execution.
     </p>
     <p>
-      Once retrieved, the encoded payload is decoded into an executable file with a randomized name and stored in the temporary directory. The script then silently executes the payload using <code>Start-Process</code> with a hidden window and waits for execution to complete.
+      Working through the lab helped me understand encoded content handling, process spawning, temporary-file behavior, and how common automation patterns create host-level signals that can be useful for detection and investigation.
     </p>
     <p>
-      It performs cleanup by removing both the payload and any generated artifacts from disk, avoiding detection by not writing PowerShell scripts to disk. This modular approach allows the operator to run any executable payload remotely, making it flexible for red team engagements or sandbox bypass.
+      The public write-up is intentionally kept high level. I keep implementation details private and focus the portfolio version on the defensive takeaway: better intuition around Windows scripting activity, endpoint visibility, and security-minded analysis in an authorized lab setting.
     </p>
 
     <a href="projects.html" class="back-link">← Back to Projects Catalog</a>
