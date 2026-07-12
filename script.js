@@ -20,14 +20,14 @@ function getLastLoginLine() {
 let terminalLines = [
   "",
   "whoami",
-  "  Andrew Webster - Security+ certified cybersecurity student",
+  "  Andrew Webster - Cybersecurity student | Security+ certified",
   "cat status.txt",
-  "  > Seeking part-time, internship, and early-career cloud/security roles in Tampa or remote.",
+  "  > Open to part-time, internship, and early-career cloud or security roles in Tampa or remote.",
   "ls ~/portfolio",
   '  <a href="about.html" class="hidden-link">about.txt</a>  <a href="projects.html" class="hidden-link">projects/</a>  <a href="resume.html" class="hidden-link">resume.pdf</a>  <a href="contact.html" class="hidden-link">contact.sh</a>',
   "cat about.txt",
-  "  > Hands-on with AWS labs, scripting, networking fundamentals, troubleshooting, and technical instruction.",
-  "  > Building practical skills that translate into strong early-career security and cloud work.",
+  "  > Experience with AWS labs, scripting, networking fundamentals, troubleshooting, and technical instruction.",
+  "  > Focused on practical cloud and security work, clear communication, and steady technical growth.",
   "help",
   "  about  projects  resume  contact  clear  help",
 ];
