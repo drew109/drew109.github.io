@@ -24,35 +24,130 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 980px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 0 1rem;
+      padding: 0 1rem 1.5rem;
       box-sizing: border-box;
     }
 
-    .resume-summary {
+    .resume-hero {
       width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.95fr);
+      gap: 1rem;
+      align-items: stretch;
       margin-bottom: 1rem;
-      padding: 1rem 1.1rem;
+    }
+
+    .resume-summary,
+    .resume-actions {
+      width: 100%;
+      padding: 1.1rem 1.2rem;
       border: 1px solid rgba(0, 255, 119, 0.3);
-      border-radius: 6px;
-      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.55);
+      box-sizing: border-box;
       font-family: 'Fira Code', monospace;
       color: #b9ffd8;
       line-height: 1.7;
+    }
+
+    .resume-summary p {
+      margin: 0;
+    }
+
+    .resume-kicker {
+      color: #00ff77;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.45rem;
+    }
+
+    .resume-summary h1 {
+      margin: 0 0 0.7rem;
+      color: #ffffff;
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      line-height: 1.2;
     }
 
     .resume-summary strong {
       color: #00ff77;
     }
 
-    .resume-container {
+    .resume-actions {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .resume-actions p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .resume-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
       width: 100%;
+    }
+
+    .resume-buttons a {
+      padding: 11px 16px;
+      font-weight: bold;
+      font-family: 'Fira Code', monospace;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: 0.25s;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .resume-buttons a.primary {
+      background: #00ff77;
+      color: #000;
+    }
+
+    .resume-buttons a.primary:hover {
+      background: #00cc66;
+      box-shadow: 0 0 10px rgba(0, 255, 119, 0.4);
+    }
+
+    .resume-buttons a.secondary {
+      background: transparent;
+      color: #00ff77;
+      border: 1px solid #00ff77;
+    }
+
+    .resume-buttons a.secondary:hover {
+      background: rgba(0, 255, 119, 0.12);
+    }
+
+    .resume-preview-shell {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .resume-container {
+      width: min(100%, 760px);
       border: 2px solid #00ff77;
-      border-radius: 6px;
+      border-radius: 10px;
       background: rgba(0, 0, 0, 0.82);
       box-shadow: 0 0 20px rgba(0, 255, 119, 0.2);
-      padding: 1rem;
+      padding: 0.95rem;
+      box-sizing: border-box;
+    }
+
+    .resume-frame-label {
+      color: #7fffc2;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
     }
 
     .resume-pages {
@@ -83,47 +178,21 @@
       font-family: 'Fira Code', monospace;
       line-height: 1.7;
       text-align: center;
-      padding: 1rem 0;
+      padding: 0.6rem 0 1rem;
     }
 
     .resume-status.error {
       color: #ffb8b8;
     }
 
-    .resume-buttons {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.8rem;
-      width: 100%;
-      max-width: 980px;
-      margin-top: 1.2rem;
-      flex-wrap: wrap;
-    }
+    @media (max-width: 900px) {
+      .resume-hero {
+        grid-template-columns: 1fr;
+      }
 
-    .resume-buttons a {
-      padding: 10px 18px;
-      font-weight: bold;
-      font-family: 'Fira Code', monospace;
-      text-decoration: none;
-      background: #00ff77;
-      color: #000;
-      border-radius: 4px;
-      transition: 0.3s;
-    }
-
-    .resume-buttons a:hover {
-      background: #00cc66;
-      box-shadow: 0 0 10px rgba(0, 255, 119, 0.4);
-    }
-
-    .resume-buttons a.secondary {
-      background: transparent;
-      color: #00ff77;
-      border: 1px solid #00ff77;
-    }
-
-    .resume-buttons a.secondary:hover {
-      background: rgba(0, 255, 119, 0.12);
+      .resume-actions {
+        padding-top: 1rem;
+      }
     }
 
     @media (max-width: 700px) {
@@ -136,26 +205,48 @@
       }
 
       .resume-container {
+        width: 100%;
         padding: 0.75rem;
+      }
+
+      .resume-summary,
+      .resume-actions {
+        padding: 1rem;
+      }
+
+      .resume-buttons a {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
   <div class="resume-wrapper">
-    <div class="resume-summary">
-      <strong>Current resume:</strong> updated from the latest source file on July 11, 2026. This version reflects AWS Student Builder Campus Leader work, current instruction and mentoring roles, Security+, and current cybersecurity coursework.
+    <div class="resume-hero">
+      <div class="resume-summary">
+        <div class="resume-kicker">Resume</div>
+        <h1>Clean inline preview, full PDF one click away.</h1>
+        <p>
+          <strong>Current version:</strong> updated from the latest source file on July 11, 2026. The preview below now scales by device size and stays intentionally smaller on desktop so it reads like a document preview instead of a blown-up embed.
+        </p>
+      </div>
+
+      <div class="resume-actions">
+        <p>Use the inline preview for a quick scan, or open the PDF directly for native browser zoom, print, and download behavior.</p>
+        <div class="resume-buttons">
+          <a class="primary" href="assets/resumes/resume_ats.pdf" download>Download current resume</a>
+          <a class="secondary" href="assets/resumes/resume_ats.pdf" target="_blank" rel="noopener noreferrer">Open PDF directly</a>
+          <a class="secondary" href="index.html?noIntro=true">Back to home</a>
+        </div>
+      </div>
     </div>
 
-    <div class="resume-container">
-      <div id="resume-status" class="resume-status">Loading resume...</div>
-      <div id="resume-pages" class="resume-pages"></div>
-    </div>
-
-    <div class="resume-buttons">
-      <a href="assets/resumes/resume_ats.pdf" download>Download current resume</a>
-      <a class="secondary" href="assets/resumes/resume_ats.pdf" target="_blank" rel="noopener noreferrer">Open PDF directly</a>
-      <a class="secondary" href="index.html?noIntro=true">Back to home</a>
+    <div class="resume-preview-shell">
+      <div class="resume-container">
+        <div class="resume-frame-label">Inline preview</div>
+        <div id="resume-status" class="resume-status">Loading resume...</div>
+        <div id="resume-pages" class="resume-pages"></div>
+      </div>
     </div>
 
     <div class="terminal-footer">
@@ -179,6 +270,24 @@
     let resizeTimer = null;
     let activeRenderToken = 0;
 
+    function getTargetPreviewWidth(containerWidth) {
+      const usableWidth = Math.max(280, containerWidth - 8);
+
+      if (window.innerWidth >= 1280) {
+        return Math.min(620, usableWidth);
+      }
+
+      if (window.innerWidth >= 960) {
+        return Math.min(660, usableWidth);
+      }
+
+      if (window.innerWidth >= 700) {
+        return Math.min(720, usableWidth);
+      }
+
+      return usableWidth;
+    }
+
     async function renderResume() {
       const renderToken = ++activeRenderToken;
       statusEl.textContent = "Loading resume...";
@@ -188,6 +297,7 @@
       try {
         const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
         const availableWidth = Math.max(320, pagesEl.clientWidth || pagesEl.parentElement.clientWidth || 320);
+        const targetWidth = getTargetPreviewWidth(availableWidth);
 
         for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
           if (renderToken !== activeRenderToken) {
@@ -196,7 +306,7 @@
 
           const page = await pdf.getPage(pageNumber);
           const baseViewport = page.getViewport({ scale: 1 });
-          const scale = Math.min(2, (availableWidth - 8) / baseViewport.width);
+          const scale = Math.min(2, targetWidth / baseViewport.width);
           const viewport = page.getViewport({ scale });
 
           const pageWrap = document.createElement("div");
