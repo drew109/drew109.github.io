@@ -3,8 +3,8 @@ const terminalContainer = document.querySelector('.terminal-container');
 let currentLine = 0;
 let isAnimating = true;
 
-const dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function getLastLoginLine() {
   const now = new Date();
@@ -20,15 +20,16 @@ function getLastLoginLine() {
 let terminalLines = [
   "",
   "whoami",
-  "  Andrew Webster — Cybersecurity Student",
+  "  Andrew Webster - Security+ certified cybersecurity student",
+  "cat status.txt",
+  "  > Seeking part-time, internship, and early-career cloud/security roles in Tampa or remote.",
   "ls ~/portfolio",
   '  <a href="about.html" class="hidden-link">about.txt</a>  <a href="projects.html" class="hidden-link">projects/</a>  <a href="resume.html" class="hidden-link">resume.pdf</a>  <a href="contact.html" class="hidden-link">contact.sh</a>',
   "cat about.txt",
-  "  > Passionate about cybersecurity, digital forensics, and system exploitation.",
-  "  > Building tools & breaking things to learn more every day.",
-  "echo \"Let's connect!\"",
-  "  \"Let's connect!\"",
-  "./contact.sh",
+  "  > Hands-on with AWS labs, scripting, networking fundamentals, troubleshooting, and technical instruction.",
+  "  > Building practical skills that translate into strong early-career security and cloud work.",
+  "help",
+  "  about  projects  resume  contact  clear  help",
 ];
 terminalLines[0] = getLastLoginLine();
 
@@ -53,7 +54,7 @@ function createTerminalLine(content, isPrompt = true) {
 
 async function typeWithCursor(element, text) {
   return new Promise(resolve => {
-    let i = 0;   
+    let i = 0;
     const cursor = document.createElement('span');
     cursor.className = 'dynamic-cursor';
 
@@ -62,7 +63,7 @@ async function typeWithCursor(element, text) {
         element.textContent = text.slice(0, i);
         element.appendChild(cursor);
         i++;
-        setTimeout(typeCharacter, 40);
+        setTimeout(typeCharacter, 35);
       } else {
         resolve();
       }
@@ -152,9 +153,10 @@ function showPersistentNav() {
   const navBar = document.createElement('div');
   navBar.className = 'nav-bar';
   navBar.innerHTML = `
-    [<a href="about.html" class="nav-link">about</a>] 
-    [<a href="projects.html" class="nav-link">projects</a>] 
-    [<a href="resume.html" class="nav-link">resume</a>] 
+    [<a href="index.html?noIntro=true" class="nav-link">home</a>]
+    [<a href="about.html" class="nav-link">about</a>]
+    [<a href="projects.html" class="nav-link">projects</a>]
+    [<a href="resume.html" class="nav-link">resume</a>]
     [<a href="contact.html" class="nav-link">contact</a>]
   `;
   terminal.appendChild(navBar);
@@ -182,6 +184,8 @@ function processCommand(command) {
     terminal.innerHTML = '';
     currentLine = 0;
     terminalBootSequence();
+  } else if (command === 'help' || command === 'ls' || command === 'home') {
+    showNavOptions();
   } else if (command === 'resume') {
     window.location.href = 'resume.html';
   } else if (command === 'projects') {
@@ -192,7 +196,7 @@ function processCommand(command) {
     window.location.href = 'contact.html';
   } else {
     createTerminalLine(`Command not found: ${command}`, false);
-    createTerminalLine('Type "help" for available commands', false);
+    createTerminalLine('Type "help" to navigate the site', false);
     showNavOptions();
   }
 }
@@ -217,5 +221,4 @@ function showCodeCredit() {
   credit.classList.add('show');
 }
 
-// Trigger after boot finishes
-setTimeout(showCodeCredit, 5000); // show after 5 seconds
+setTimeout(showCodeCredit, 5000);

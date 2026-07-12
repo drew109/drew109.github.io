@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Resume</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Current resume for Andrew Webster." />
+  <title>Resume | Andrew Webster</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="resume.css" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
@@ -21,9 +23,25 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 950px;
+      max-width: 980px;
       padding: 2rem 1rem;
       box-sizing: border-box;
+    }
+
+    .resume-summary {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid rgba(0, 255, 119, 0.3);
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.5);
+      font-family: 'Fira Code', monospace;
+      color: #b9ffd8;
+      line-height: 1.7;
+    }
+
+    .resume-summary strong {
+      color: #00ff77;
     }
 
     .resume-container {
@@ -46,9 +64,11 @@
     .resume-buttons {
       display: flex;
       justify-content: space-between;
+      gap: 0.8rem;
       width: 100%;
-      max-width: 950px;
+      max-width: 980px;
       margin-top: 1.2rem;
+      flex-wrap: wrap;
     }
 
     .resume-buttons a {
@@ -67,44 +87,39 @@
       box-shadow: 0 0 10px rgba(0, 255, 119, 0.4);
     }
 
-    .terminal-footer {
-      margin-top: 2rem;
+    .resume-buttons a.secondary {
+      background: transparent;
       color: #00ff77;
-      text-align: center;
+      border: 1px solid #00ff77;
     }
 
-    .terminal-footer a {
-      color: #00ff77;
-      text-decoration: none;
-      margin: 0 5px;
-    }
-
-    .terminal-footer a:hover {
-      text-decoration: underline;
-      text-shadow: 0 0 8px rgba(0, 255, 119, 0.4);
+    .resume-buttons a.secondary:hover {
+      background: rgba(0, 255, 119, 0.12);
     }
   </style>
 </head>
 <body>
   <div class="resume-wrapper">
+    <div class="resume-summary">
+      <strong>Current resume:</strong> updated from the latest source file on July 11, 2026. This version reflects AWS Student Builder Campus Leader work, current instruction and mentoring roles, Security+, and current cybersecurity coursework.
+    </div>
+
     <div class="resume-container">
-      <iframe class="resume-pdf" src="resume_ats.pdf#toolbar=0&navpanes=0&scrollbar=0"></iframe>
+      <iframe class="resume-pdf" src="assets/resumes/resume_ats.pdf#toolbar=0&navpanes=0&scrollbar=0"></iframe>
     </div>
 
     <div class="resume-buttons">
-      <a href="assets/resumes/resume_ats.pdf" download>Download ATS</a>
-      <a href="index.html?noIntro=true">← Back to Terminal</a>
+      <a href="assets/resumes/resume_ats.pdf" download>Download current resume</a>
+      <a class="secondary" href="index.html?noIntro=true">Back to home</a>
     </div>
 
     <div class="terminal-footer">
       [ <a href="index.html?noIntro=true">home</a> ]
-      [ <a href="projects.html">projects/</a> ]
+      [ <a href="projects.html">projects</a> ]
       [ <a href="resume.html">resume</a> ]
       [ <a href="about.html">about</a> ]
       [ <a href="contact.html">contact</a> ]
     </div>
-    </body>
-    </html>
-    
+  </div>
 </body>
 </html>
