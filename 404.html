@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>404 | Kernel panic | drewwebster.dev</title>
+  <style>
+    html,body{margin:0;min-height:100%;background:#05080f;color:#c9d3e0;font:14px/1.55 "Fira Code",Consolas,monospace}
+    main{max-width:860px;margin:0 auto;padding:9vh 22px}
+    .ok{color:#5fd7a7}.err{color:#e2524f}.dim{color:#7d8aa0}.b{color:#5b98fa}
+    a{color:#9fc2ff}
+    .cursor{display:inline-block;width:8px;height:15px;background:#c9d3e0;vertical-align:-2px;animation:b 1s steps(1) infinite}
+    @keyframes b{50%{opacity:0}}
+    @media (prefers-reduced-motion: reduce){.cursor{animation:none}}
+  </style>
+</head>
+<body>
+<main>
+<div class="dim">[    0.000000] Linux version 6.x-kali-amd64 (devel@kali.org)</div>
+<div>[    0.412233] <span class="ok">[  OK  ]</span> Reached target <span class="b">Portfolio</span>.</div>
+<div>[    1.337000] <span class="err">[FAILED]</span> Failed to mount <span class="b" id="path">/requested/page</span>: No such file or directory</div>
+<div>[    1.337404] <span class="err">Kernel panic - not syncing: 404: page not found</span></div>
+<div class="dim">[    1.337405] CPU: 0 PID: 404 Comm: you-took-a-wrong-turn</div>
+<div class="dim">[    1.337406] Call Trace: browser -&gt; dns -&gt; github-pages -&gt; nothing_here()</div>
+<br>
+<div>Recovery options:</div>
+<div>&nbsp;&nbsp;<a href="/">reboot</a>&nbsp;&nbsp;<span class="dim"># back to the desktop</span></div>
+<div>&nbsp;&nbsp;<a href="/resume_ats.pdf">fsck --resume</a>&nbsp;&nbsp;<span class="dim"># the resume, intact</span></div>
+<div>&nbsp;&nbsp;<a href="/about.html">man drew</a>&nbsp;&nbsp;<span class="dim"># text version</span></div>
+<br>
+<div>(initramfs) <span class="cursor"></span></div>
+<script>
+  // Show the path that failed; textContent only.
+  document.getElementById('path').textContent = location.pathname;
+</script>
+</main>
+</body>
+</html>

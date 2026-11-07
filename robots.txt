@@ -1,4 +1,7 @@
+# Recon checks robots.txt first. Good instinct.
+# Reminder: robots.txt is a polite request, not access control.
 User-agent: *
+Disallow: /dragon-den/
 Allow: /
 
 Sitemap: https://drewwebster.dev/sitemap.xml
